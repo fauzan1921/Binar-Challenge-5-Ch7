@@ -1,0 +1,43 @@
+Catatan untuk reviewer/facil, web tidak berfungsi 100% fitur game suit hanya bisa 1 ronde, tidak bisa 3 ronde seperti
+yang diinstruksikan, API game_history sudah coba dibuat namun tidak berfungsi. Saya kumpulkan sebisa saya. Mohon maaf.
+
+Panduan ini saya buat semata-mata saya buat untuk memudahkan facil/reviewer dalam melakukan pengecekan, 
+karena saya sangat sadar akan banyaknya kekurangan pada coding-an saya yang membuat web rawan error ketika dijalankan,
+dan juga mungkin membuat coding-an saya sulit dipahami oleh facil/reviewer.
+
+1. register satu akun 'superadmin' dengan cara menuliskan 'superadmin' pada input role di laman login
+
+2. register satu akun 'player' (untuk player1) dengan menuliskan 'player' pada input role di laman login
+
+3. register satu akun 'player' lagi (untuk player2) dengan menuliskan 'player' pada input role di laman login
+
+4. login dengan akun superadmin (akan langsung diarahkan ke superadmin-page)
+
+5. buat room (pada laman superadmin-page)
+
+6. logout akun superadmin
+
+7. login menggunakan postman dengan akun player kesatu dengan menuliskan text berikut di dalam body 
+	{"username": "(sesuai dengan username yang diregister)", "password": "(sesuai dengan password yang diregister)"}
+	, lalu copy token
+
+8. register akun player pertama sebagai player 1 pada salah satu room yang sudah dibuat superadmin, 
+	dengan cara menjalankan API PUT /room/:id 
+	(:id ditulis sesuai dengan nomor id dari room yang sudah dibuat (biasanya mulai dari "1")),
+	tuliskan juga text berikut di dalam body untuk menentukan pilihan player 1, 
+	{"playerchoice": "R"/"P"/"S"}. (pilih salah satu) (R = rock, P = paper, S = scissors). 
+	Masukkan pula token login akun player kesatu, ke dalam bagian headers
+
+9. login menggunakan postman dengan akun player kedua dengan menuliskan text berikut di dalam body 
+	{"username": "(sesuai dengan username yang diregister)", "password": "(sesuai dengan password yang diregister)"}
+	, lalu copy token
+
+10. register akun player kedua sebagai player 2 pada room yang sama dengan yang sudah dipilih player 1,
+	dengan cara menjalankan API PUT /room/:id (:id sama dengan yang sudah ditentukan player 1 pada step no.7),
+	tuliskan juga text berikut di dalam body untuk menentukan pilihan player 2, 
+	{"playerchoice": "P"/"R"/"S"}. (pilih salah satu) (R = rock, P = paper, S = scissors). 
+	Masukkan pula token login akun player kedua, ke dalam bagian headers
+
+11. generate hasil game dengan menjalankan API PUT /room/result/:id 
+	(:id ditulis sama dengan yang sudah ditentukan player 1 dan player 2 /step no.8 dan no.10).
+	Hasil game akan muncul di response postman, laman player-page, dan juga superadmin-page

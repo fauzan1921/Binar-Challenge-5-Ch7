@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "datasaur",
+    "database": "game_suit",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "datasaur",
+    "database": "game_suit",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "datasaur",
+    "database": "game_suit",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
